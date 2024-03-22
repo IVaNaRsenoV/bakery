@@ -1,14 +1,10 @@
-import React, { Dispatch, SetStateAction } from 'react';
+import React from 'react';
 import styles from './Input.module.scss';
+import { IInput, SetHandlerType } from './types';
 
-type SetHandlerType = Dispatch<SetStateAction<string>>;
-interface IInput {
-    value: string;
-    tabIndex: number;
-    setHandler: SetHandlerType;
-}
 
-export const Input: React.FC<IInput> = ({ value, tabIndex, setHandler }) => {
+
+export const Input: React.FC<IInput> = ({ value, tabIndex, setHandler, dataTestid }) => {
 
     const inputHander = (event: React.ChangeEvent<HTMLInputElement>, setHandler: SetHandlerType) => {
         event.preventDefault();
@@ -18,6 +14,7 @@ export const Input: React.FC<IInput> = ({ value, tabIndex, setHandler }) => {
     return (
         <input
             className={styles.input}
+            data-testid={dataTestid}
             type="text"
             placeholder={value}
             id={value}

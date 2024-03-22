@@ -1,21 +1,22 @@
 import { Outlet, Route, Routes } from 'react-router'
-
-import { Form, Forum } from 'components/index';
-import { Main } from 'pages';
+import { Register, Forum } from 'components/index';
 import { Section, Login, Logout } from 'components/index';
+import { Main } from 'pages';
 
 export const Layout = () => {
+
     return (
         <>
             <Routes>
+                <Route path="/register" element={<Register />} />
+                <Route path="/login" element={<Login />} />
+                <Route path='/logout' element={<Logout />} />
                 <Route path="/" element={<Main />} />
                 <Route path="/about-us" element={<Section title={"About us"} description='Lorem about us' />} />
                 <Route path="/about-shop" element={<Section title={"About online shop"} description={'Lorem about online shop'} />} />
                 <Route path="/catalog" element={<Section title={"Catalog"} description='Lorem catalog' />} />
-                <Route path="/form" element={<Form />} />
-                <Route path="/login" element={<Login />} />
                 <Route path="/forum" element={<Forum />} />
-                <Route path='/logout' element={<Logout />} />
+
             </Routes>
             <Outlet />
         </>

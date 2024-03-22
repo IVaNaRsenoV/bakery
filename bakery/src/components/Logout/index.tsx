@@ -1,23 +1,24 @@
+import { useNavigate } from 'react-router';
+import { useAppDispatch } from '../../store/reduxHelpers';
+import { setAuth } from '../../reducers/authReducer';
+import { api } from '../../http/api';
+import axios from 'axios';
+
 export const Logout = () => {
-    function logout() {
-        fetch("http://localhost:5000/users/logout", {
-            method: "POST",
-            credentials: 'include'
-        })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error("Ошибка сети!");
-                }
-                return response.text();
-            })
-            .then(data => console.log('Куки удалены'))
-            .catch(error => console.error("Произошла ошибка!"))
+    const dispatch = useAppDispatch();
+    const navigate = useNavigate();
+
+    async function logout() {
+        // api("logout", "POST");
+        await axios.post("http://localhost:5000/users/logout");
+        dispatch(setAuth(false));
+        navigate("/");
     }
 
     return (
         <div>
             <h1>Are you sure ?</h1>
-            <button onClick={logout}>yes</button>
+            <button onClick={logout} data-testid={"btn"}>yes</button>
         </div>
     )
 }

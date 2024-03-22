@@ -26,21 +26,16 @@ export const linkItems = [
     },
     {
         id: 4,
-        path: '/Form',
-        content: 'Register'
-    },
-    {
-        id: 5,
         path: '/login',
         content: 'Login'
     },
     {
-        id: 6,
-        path: '/forum',
-        content: 'Forum'
+        id: 5,
+        path: '/register',
+        content: 'Register'
     },
     {
-        id: 7,
+        id: 6,
         path: '/logout',
         content: 'Logout'
     }

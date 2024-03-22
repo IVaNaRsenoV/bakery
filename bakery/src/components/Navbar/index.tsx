@@ -1,6 +1,6 @@
-import { BurgerMenu, LinksItems } from 'components';
+import { BurgerMenu, LinksItems } from '../../components';
 import styles from './Navbar.module.scss';
-import { linkItems } from 'assets/UI/links';
+import { linkItems } from '../../assets/UI/links';
 
 export const Navbar = () => {
     return (

@@ -2,7 +2,7 @@ export { Logo } from './Logo';
 export { Navbar } from './Navbar';
 export { Section } from './Section';
 export { BurgerMenu } from './BurgerMenu';
-export { Form } from './Form';
+export { Register } from './Register';
 export { LinksItems } from './LinksItems';
 export { Input } from './Input';
 export { Button } from './Button';

@@ -1,7 +1,12 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './Login.module.scss';
-import { Button, Input } from 'components/index';
+import { Button, Input } from '../../components/index';
+import { api } from '../../http/api';
+import { useAppDispatch } from '../../store/reduxHelpers';
+import { setAuth } from '../../reducers/authReducer';
+import axios from 'axios';
+
 
 export const Login = () => {
 
@@ -9,30 +14,31 @@ export const Login = () => {
     const [password, setPassword] = useState<string>('');
 
     const navigate = useNavigate();
+    const dispatch = useAppDispatch();
+
 
     const submitHandler = async () => {
         try {
             if (login.length > 1 && password.length > 1) {
-                await fetch("http://localhost:5000/users/login", {
-                    method: "POST",
-                    credentials: 'include',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ login, password })
+                // api("login", "POST", { login, password })
+                const result = await axios.post("http://localhost:5000/users/login", {
+                    login, password
                 })
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error("Ошибка сети!");
-                        }
-                        return response.text();
-                    })
-                    .then(data => console.log('Значение куки: ', data))
-                    .catch(error => console.error("Произошла ошибка!"))
+
+                console.log(result.data.login);
+
+                if (result.data.login) {
+                    dispatch(setAuth(false));
+                } else if (result.data.login === undefined) {
+                    dispatch(setAuth(true));
+                }
+
                 navigate("/forum");
             }
         } catch (error) {
             console.log(error);
+            dispatch(setAuth(false));
+            navigate("/forum");
         }
     }
 
@@ -44,6 +50,7 @@ export const Login = () => {
                 value={"login"}
                 tabIndex={1}
                 setHandler={setLogin}
+                dataTestid={"login"}
             />
 
             <label htmlFor="password">password:</label>
@@ -51,8 +58,9 @@ export const Login = () => {
                 value={"password"}
                 tabIndex={2}
                 setHandler={setPassword}
+                dataTestid={"password"}
             />
-            <Button handler={submitHandler} />
+            <Button handler={submitHandler} dataTestid={"btn"} />
         </form>
     )
 }

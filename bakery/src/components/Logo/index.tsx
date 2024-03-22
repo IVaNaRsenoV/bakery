@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import bakery from 'assets/bakery.svg';
+import bakery from '../../assets/bakery.svg';
 import styles from './Logo.module.scss';
 
 export const Logo = () => {

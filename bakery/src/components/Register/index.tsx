@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import styles from './Form.module.scss';
-import { Button, Input } from 'components/index';
+import { Button, Input } from '../../components/index';
+import styles from './Register.module.scss';
 
-export const Form = () => {
+export const Register = () => {
 
     const [login, setLogin] = useState<string>('');
     const [password, setPassword] = useState<string>('');
@@ -25,7 +25,7 @@ export const Form = () => {
                 navigate("/login");
             }
         } catch (error) {
-            console.log(error);
+            localStorage.setItem("users", "This user already exists");
         }
     }
 
@@ -34,6 +34,7 @@ export const Form = () => {
             <h2>Register</h2>
             <label htmlFor="login">login:</label>
             <Input
+                dataTestid={"login"}
                 value={"login"}
                 tabIndex={1}
                 setHandler={setLogin}
@@ -41,11 +42,12 @@ export const Form = () => {
 
             <label htmlFor="password">password:</label>
             <Input
+                dataTestid={"password"}
                 value={"password"}
                 tabIndex={2}
                 setHandler={setPassword}
             />
-            <Button handler={submitHandler} />
+            <Button handler={submitHandler} dataTestid={"btn-register"} />
         </form>
     )
 }
