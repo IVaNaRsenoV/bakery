@@ -5,6 +5,7 @@
 
 .navbar_menu {
     display: flex;
+    transition: all 1s ease-in-out;
 }
 
 @media screen and (max-width: 900px) {

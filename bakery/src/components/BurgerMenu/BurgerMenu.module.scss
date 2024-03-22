@@ -69,3 +69,25 @@
         position: static;
     }
 }
+
+@media screen and (max-width: 900px) {
+    .navbar_menu {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 80px;
+        bottom: 0;
+        background-color: black;
+        opacity: 0.9;
+    }
+
+    .navbar_menu a {
+        text-align: center;
+        color: white;
+        font-size: 30px;
+        padding: 20px;
+        border-bottom: 1px solid white;
+    }
+}
