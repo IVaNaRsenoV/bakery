@@ -13,6 +13,7 @@ export const Logout = () => {
         await axios.post("http://localhost:5000/users/logout");
         dispatch(setAuth(false));
         navigate("/");
+        localStorage.removeItem("token");
     }
 
     return (

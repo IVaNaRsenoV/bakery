@@ -12,9 +12,13 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import authReducer from '../reducers/authReducer';
+import profileReducer from '../reducers/profileReducer';
+import messagesForumReducer from '../reducers/messagesForumReducer';
 
 const rootReducer = combineReducers({
-    auth: authReducer
+    auth: authReducer,
+    profile: profileReducer,
+    msgForum: messagesForumReducer
 });
 
 const persistConfig = {

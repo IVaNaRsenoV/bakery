@@ -1,5 +1,5 @@
 import { Outlet, Route, Routes } from 'react-router'
-import { Register, Forum } from 'components/index';
+import { Register, Forum, Profile } from 'components/index';
 import { Section, Login, Logout } from 'components/index';
 import { Main } from 'pages';
 
@@ -16,7 +16,7 @@ export const Layout = () => {
                 <Route path="/about-shop" element={<Section title={"About online shop"} description={'Lorem about online shop'} />} />
                 <Route path="/catalog" element={<Section title={"Catalog"} description='Lorem catalog' />} />
                 <Route path="/forum" element={<Forum />} />
-
+                <Route path="/profile" element={<Profile />} />
             </Routes>
             <Outlet />
         </>

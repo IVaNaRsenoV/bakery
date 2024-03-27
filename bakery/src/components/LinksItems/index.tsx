@@ -14,6 +14,7 @@ export const LinksItems: FC<ILinksItems> = ({ linkItems }) => {
                 linkItems.map(({ id, path, content }: ILinkItem) => {
                     if (auth && path === '/login') return null;
                     if (!auth && path === '/logout') return null;
+                    if (!auth && path === '/profile') return null;
 
                     return (
                         <Link key={id} to={path} className={styles.link_item}>{content}</Link>

@@ -1,18 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import styles from './Forum.module.scss';
 import socket from '../../assets/socket/index';
-import { useAppSelector } from '../../store/reduxHelpers';
+import { useAppDispatch, useAppSelector } from '../../store/reduxHelpers';
+import { setMsg } from '../../reducers/messagesForumReducer';
 
 export const Forum = () => {
     const [message, setMessage] = useState<string>("")
-    const [messages, setMessages] = useState<string[] | []>([])
+
+    const dispatch = useAppDispatch();
 
     const auth = useAppSelector(state => state.auth.auth);
+    const { login } = useAppSelector(data => data.profile);
+    const messagesData = useAppSelector(data => data.msgForum.msg);
 
     useEffect(() => {
+
+        const token = localStorage.getItem("token");
+
         socket.on("forum", (data) => {
-            console.log(data);
-            setMessages((prevMessages) => [...prevMessages, data]);
+            console.log(data + " " + token);
+            dispatch(setMsg(data));
         })
 
         setMessage("");
@@ -25,7 +32,8 @@ export const Forum = () => {
     }, [])
 
     const setMessagesHandler = async () => {
-        await socket.emit("forum", message);
+        await socket.emit("forum", `${login} ` + message);
+        setMsg(message)
         setMessage("");
     };
 
@@ -49,8 +57,8 @@ export const Forum = () => {
                         </div>
                         <div className={styles.forum__container}>
                             {
-                                messages.length > 0 ?
-                                    messages.map((msg: string, i) => {
+                                messagesData.length > 0 ?
+                                    messagesData.map((msg: string, i) => {
                                         return (
                                             <p key={i}>{msg}</p>
                                         )

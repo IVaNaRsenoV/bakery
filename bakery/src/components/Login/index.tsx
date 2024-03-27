@@ -6,6 +6,7 @@ import { api } from '../../http/api';
 import { useAppDispatch } from '../../store/reduxHelpers';
 import { setAuth } from '../../reducers/authReducer';
 import axios from 'axios';
+import { setLoginValue } from '../../reducers/profileReducer';
 
 
 export const Login = () => {
@@ -25,12 +26,15 @@ export const Login = () => {
                     login, password
                 })
 
-                console.log(result.data.login);
+                console.log(result.data);
+
+                dispatch(setLoginValue(result.data.loginValue));
 
                 if (result.data.login) {
                     dispatch(setAuth(false));
                 } else if (result.data.login === undefined) {
                     dispatch(setAuth(true));
+                    localStorage.setItem("token", result.data.ACCESS_TOKEN);
                 }
 
                 navigate("/forum");

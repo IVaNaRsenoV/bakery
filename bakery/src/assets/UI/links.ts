@@ -38,5 +38,10 @@ export const linkItems = [
         id: 6,
         path: '/logout',
         content: 'Logout'
+    },
+    {
+        id: 7,
+        path: '/profile',
+        content: 'Profile'
     }
 ]

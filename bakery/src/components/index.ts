@@ -9,3 +9,4 @@ export { Button } from './Button';
 export { Login } from './Login';
 export { Forum } from './Forum';
 export { Logout } from './Logout';
+export { Profile } from './Profile';
